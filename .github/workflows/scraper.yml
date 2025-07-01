@@ -2,7 +2,8 @@ name: Run Voting Scraper
 
 on:
   schedule:
-    - cron: '* * * * *'  # Every minute
+    - cron: '*/15 * * * *'   # Every 15 minutes
+  workflow_dispatch:      # Allow manual trigger
 
 jobs:
   scrape:
