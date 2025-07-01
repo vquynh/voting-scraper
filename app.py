@@ -74,7 +74,7 @@ with open("voting_results.json", "w", encoding="utf-8") as f:
     json.dump(results, f, ensure_ascii=False, indent=2)
 
 # 🔥 Send JSON to API
-api_url = "https://voting-dashboard-lf0r.onrender.com/api/submit-votes"  
+api_url = "https://voting-dashboard-3q2r.onrender.com/api/submit-votes"
 headers = {
     "Content-Type": "application/json",
 }
