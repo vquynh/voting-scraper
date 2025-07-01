@@ -6,7 +6,9 @@ from bs4 import BeautifulSoup
 import time
 import json
 from datetime import datetime
-import requests  # For sending data to API
+import requests
+import re
+
 
 # Setup Chrome options
 chrome_options = Options()
@@ -22,7 +24,7 @@ url = "https://yvote.vn/voting-page/d49a70e5-e756-47a1-b70b-26d05e39592b?awardId
 driver.get(url)
 
 # Wait for JavaScript to load
-time.sleep(1)  # You can increase this if needed
+time.sleep(2)  # You can increase this if needed
 
 # Get rendered HTML
 html = driver.page_source
@@ -54,11 +56,9 @@ for name_elem, vote_elem in zip(name_elements, vote_elements):
     name = name_elem.get_text(strip=True)
     votes_text = vote_elem.get_text(strip=True)
 
-    # Extract only digits and convert to float
-    try:
-        votes = float(''.join(filter(str.isdigit, votes_text)))/100
-    except ValueError:
-        votes = 0.0  # Default if parsing fails
+     # Improved float extraction
+    match = re.search(r"[-+]?\d*\.\d+|\d+", votes_text.replace(',', '.'))
+    votes = float(match.group()) if match else 0.0
 
 
     results["results"].append({
