@@ -3,7 +3,6 @@ name: Run Voting Scraper
 on:
   schedule:
     - cron: '* * * * *'  # Every minute
-  workflow_dispatch:     # Manual trigger option
 
 jobs:
   scrape:
