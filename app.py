@@ -6,6 +6,7 @@ from bs4 import BeautifulSoup
 import time
 import json
 from datetime import datetime
+from zoneinfo import ZoneInfo
 import requests
 import re
 
@@ -46,7 +47,7 @@ vote_elements = soup.find_all(vote_class_match)
 
 print("🏆 Voting Results:")
 # Build JSON structure
-timestamp = datetime.now().isoformat()
+timestamp = datetime.now(ZoneInfo('Asia/Ho_Chi_Minh')).isoformat()
 results = {
     "timestamp": timestamp,
     "results": []
