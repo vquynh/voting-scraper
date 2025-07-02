@@ -5,3 +5,4 @@ requests==2.31.0
 gunicorn==21.2.0
 playwright-stealth==2.0.0
 selenium
+webdriver_manager
