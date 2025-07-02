@@ -12,21 +12,16 @@ import re
 
 def run_scraper():
 
-    # Setup Chrome options
-    chrome_options = Options()
-    chrome_options.add_argument("--headless")  # Run in headless mode (no browser window)
-    chrome_options.add_argument("--disable-gpu")
-    chrome_options.add_argument("--no-sandbox")
-    chrome_options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36")
-
-    # Start browser
-    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
+    # Use Firefox in headless mode
+    options = Options()
+    options.add_argument("--headless")
+    driver = webdriver.Firefox(options=options)
 
     url = "https://yvote.vn/voting-page/d49a70e5-e756-47a1-b70b-26d05e39592b?awardId=650505d3-c527-4869-a948-e9e214b51dbc"
     driver.get(url)
 
     # Wait for JavaScript to load
-    time.sleep(2)  # You can increase this if needed
+    driver.implicitly_wait(2)
 
     # Get rendered HTML
     html = driver.page_source
