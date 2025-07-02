@@ -83,10 +83,13 @@ def run_scraper():
 
     try:
         response = requests.post(api_url, json=results, headers=headers)
-        print(f"API Response Status Code: {response.status_code}")
-        print("API Response Body:", response.text)
+        response = requests.post(api_url, json=results)
+        print(f"Posted to {api_url} | Status: {response.status_code}")
+        return results
+
     except Exception as e:
-        print("Error sending data to API:", e)
+        print("Error:", str(e))
+        return {"error": str(e)}
 
     driver.quit()
 if __name__ == "__main__":

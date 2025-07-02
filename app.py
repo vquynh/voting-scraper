@@ -2,7 +2,11 @@ from flask import Flask
 import os
 from scraper import run_scraper
 
-app = run_scraper  # Import your function above
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return "Use /run to start the scraper"
 
 @app.route('/run', methods=['GET'])
 def trigger():
