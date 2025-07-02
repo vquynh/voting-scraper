@@ -1,11 +1,12 @@
 from flask import Flask
+import asyncio
 from scraper import run_scraper
 
 app = Flask(__name__)
 
-@app.route('/run', methods=['GET'])
-def trigger():
-    result = run_scraper()
+@app.route('/run')
+def trigger_scrape():
+    result = asyncio.run(run_scraper())
     return result
 
 if __name__ == "__main__":
