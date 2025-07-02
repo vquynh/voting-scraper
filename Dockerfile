@@ -6,9 +6,11 @@ WORKDIR /app
 
 # Install Python dependencies
 RUN apt-get update
-RUN apt install -y python3 python3-pip
+RUN apt install -y python3 python3-pip python3.12-venv
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+RUN python3 -m venv .venv
+RUN . .venv/bin/activate
+RUN .venv/bin/pip install -r requirements.txt
 
 # Copy app code
 COPY . .
@@ -17,4 +19,4 @@ COPY . .
 EXPOSE 8080
 
 # Command to run the app
-CMD ["gunicorn", "-b", "0.0.0.0:8080", "main:app"]
+CMD [".venv/bin/gunicorn", "-b", "0.0.0.0:8080", "app:app"]
