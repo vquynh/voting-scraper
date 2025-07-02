@@ -4,9 +4,10 @@ FROM mcr.microsoft.com/playwright:v1.53.0-noble
 # Set working directory
 WORKDIR /app
 
-# Install Python dependencies
-RUN apt-get update
-RUN apt install -y python3 python3-pip python3.12-venv
+# Install Python and Pip
+RUN apt-get update && \
+    apt-get install -y python3 python3-pip python3-venv
+
 COPY requirements.txt .
 RUN python3 -m venv .venv
 RUN . .venv/bin/activate
