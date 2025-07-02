@@ -1,7 +1,5 @@
-selenium
-beautifulsoup4
-requests
-psycopg2-binary
-webdriver-manager
-gunicorn
-flask
+Flask==3.0.0
+gunicorn==21.2.0
+selenium==4.19.0
+beautifulsoup4==4.12.3
+requests==2.31.0
