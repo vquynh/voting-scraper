@@ -25,7 +25,7 @@ url = "https://yvote.vn/voting-page/d49a70e5-e756-47a1-b70b-26d05e39592b?awardId
 driver.get(url)
 
 # Wait for JavaScript to load
-time.sleep(2)  # You can increase this if needed
+time.sleep(5)  # You can increase this if needed
 
 # Get rendered HTML
 html = driver.page_source
